@@ -117,7 +117,7 @@ namespace JMU.TestScoring
                 }
                 catch (Exception e)
                 {
-                    logger.AppendLine(String.Format("WARNING: An error occurred uploading file \"{0}\"", file));
+                    logger.AppendLine(String.Format("WARNING: An error occurred uploading file \"{0}\":  {1}", file, e.Message));
 
                     Loader.Hide().Execute(context);
                     Completed(this, new ResultCompletionEventArgs { Error = e, WasCancelled = true });
@@ -155,7 +155,7 @@ namespace JMU.TestScoring
             }
             catch (Exception e)
             {
-                logger.AppendLine("WARNING: An error occurred while uploading the log file \"{0}\"", logFilePath);
+                logger.AppendLine("WARNING: An error occurred while uploading the log file \"{0}\": {1}", logFilePath, e.Message);
 
                 Loader.Hide().Execute(context);
                 Completed(this, new ResultCompletionEventArgs { Error = e, WasCancelled = true });

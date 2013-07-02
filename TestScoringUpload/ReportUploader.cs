@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 using System.IO;
 using Caliburn.Micro;
 using Crosse.ExtensionMethods;
-using Renci.SshNet;
-using Renci.SshNet.Sftp;
-using Renci.SshNet.Common;
 
 namespace JMU.TestScoring
 {

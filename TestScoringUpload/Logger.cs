@@ -58,5 +58,15 @@ namespace JMU.TestScoring
         {
             AppendLine(String.Format(format, args));
         }
+
+        public void AppendError(string format, params object[] args)
+        {
+            AppendLine(String.Format("[ERROR] {0}", format), args);
+        }
+
+        public void AppendWarning(string format, params object[] args)
+        {
+            AppendLine(String.Format("[WARNING] {0}", format), args);
+        }
     }
 }

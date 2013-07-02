@@ -26,7 +26,7 @@ namespace JMU.TestScoring
             PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
             try
             {
-                UserPrincipal princ = UserPrincipal.FindByIdentity(ctx, username);
+                UserPrincipal princ = await Task.Run(() => UserPrincipal.FindByIdentity(ctx, username));
                 return !(princ == null);
             }
             catch (Exception)

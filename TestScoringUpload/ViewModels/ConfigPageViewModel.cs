@@ -213,7 +213,7 @@ namespace JMU.TestScoring
                         if (System.IO.Directory.Exists(DefaultSourcePath) == false)
                         {
                             message = String.Format("Path \"{0}\" does not exist or is invalid.", DefaultSourcePath);
-                            logger.AppendLine(message);
+                            //logger.AppendLine(message);
                             valid = false;
                             break;
                         }
@@ -225,14 +225,14 @@ namespace JMU.TestScoring
                             if (System.IO.Directory.Exists(fullstudentpath) == false)
                             {
                                 message = string.Format("Student Report Path ({0}) does not exist or is invalid.", fullstudentpath);
-                                logger.AppendLine(message);
+                                //logger.AppendLine(message);
                                 valid = false;
                             }
                         }
                         catch (Exception e)
                         {
                             message = e.Message;
-                            logger.AppendLine(e.Message);
+                            //logger.AppendLine(e.Message);
                             valid = false;
                         }
                         break;

@@ -72,13 +72,15 @@ namespace JMU.TestScoring
             if (Validate())
             {
                 yield return Loader.Show("Connecting...");
-                yield return new SftpConnector();
+                //yield return new SftpConnector(config.RemoteServer, config.RemoteServerUser, config.RemoteServerPassword);
+                yield return new FtpConnector(config.RemoteServer, config.RemoteServerUser, config.RemoteServerPassword);
 
                 yield return Loader.Show("Uploading files...");
                 yield return new ReportUploader(FacultyUsername, TestCode);
 
                 yield return Loader.Show("Disconnecting...");
-                yield return new SftpDisconnector();
+                //yield return new SftpDisconnector();
+                yield return new FtpDisconnector();
             }
 
             yield return Loader.Hide();

@@ -27,6 +27,7 @@ namespace JMU.TestScoring
             this.testCode = testCode;
 
             this.helper = new SshHelper();
+            this.helper = new FtpHelper();
         }
 
         #region IResult Members

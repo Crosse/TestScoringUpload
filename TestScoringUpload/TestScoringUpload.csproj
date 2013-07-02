@@ -98,6 +98,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="ITransferHelper.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Models\ConfigModel.cs" />

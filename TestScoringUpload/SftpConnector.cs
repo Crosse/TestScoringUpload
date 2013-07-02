@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
@@ -10,6 +11,16 @@ namespace JMU.TestScoring
     public class SftpConnector : IResult
     {
         Logger logger = Logger.GetLogger();
+        string server;
+        string username;
+        SecureString password;
+
+        public SftpConnector(string server, string username, SecureString password)
+        {
+            this.server = server;
+            this.username = username;
+            this.password = password;
+        }
 
         #region IResult Members
         public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
@@ -21,7 +32,8 @@ namespace JMU.TestScoring
             try
             {
                 //await Task.Run(() => System.Threading.Thread.Sleep(2000));
-                SshHelper.Connect();
+                ITransferHelper helper = new SshHelper();
+                helper.Connect(server, username, password);
             }
             catch (Exception e)
             {

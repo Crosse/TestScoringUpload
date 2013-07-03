@@ -56,7 +56,7 @@
         </Grid>
         <TextBox Grid.Row="1" Name="Messages" Margin="25,0,25,15" IsReadOnly="True" VerticalAlignment="Stretch"
                  TextChanged="Messages_TextChanged" IsTabStop="False" Focusable="True"
-                 ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
                  MaxWidth="{Binding ElementName=g, Path=ActualWidth}"
                  MaxHeight="{Binding ElementName=g, Path=ActualHeight}"
                  Text="{Binding Messages, Mode=OneWay, Source={StaticResource logger}}" />

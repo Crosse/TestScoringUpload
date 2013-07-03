@@ -69,11 +69,18 @@ namespace JMU.TestScoring
             {
                 logger.AppendLine("WARNING:  Files with this test code prefix already exist!");
 
-                Loader.Hide().Execute(context);
-                args.WasCancelled = true;
-                Completed(this, args);
+                bool result = Loader.Query("Files with this test code already exist.  Overwrite?");
 
-                return;
+                if (result)
+                    logger.AppendWarning("Overwriting existing files per operator request.");
+                else
+                {
+                    logger.AppendLine("Existing files will not be overwritten.  Cancelling operation.");
+                    Loader.Hide().Execute(context);
+                    args.WasCancelled = true;
+                    Completed(this, args);
+                    return;
+                }
             }
 
 

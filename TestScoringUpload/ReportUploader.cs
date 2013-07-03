@@ -105,6 +105,25 @@ namespace JMU.TestScoring
             WriteLogFile(logDir, context);
 
             logger.AppendLine("Upload was successful.");
+
+            bool delete = Loader.Query("Delete source files?");
+            if (delete)
+            {
+                logger.AppendLine("Deleting local files...");
+                foreach (var file in (files.Concat(studentFiles)))
+                {
+                    try
+                    {
+                        File.Delete(file);
+                        logger.AppendLine("Deleted {0}", file);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.AppendError("Unable to delete \"{0}\": {1}", Path.GetFileName(file), e.Message);
+                    }
+                }
+            }
+
             Completed(this, args);
         }
 

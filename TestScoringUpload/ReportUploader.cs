@@ -94,7 +94,7 @@ namespace JMU.TestScoring
             UploadFiles(studentFiles, remoteStudentDir, context);
 
             //TODO: Don't hardcode the Logs path.
-            string logDir = UnixPath.Combine(remoteDir, "Logs");
+            string logDir = UnixPath.Combine(config.RemoteServerBaseDirectory, "UploadLogs");
             WriteLogFile(logDir, context);
 
             logger.AppendLine("Upload was successful.");

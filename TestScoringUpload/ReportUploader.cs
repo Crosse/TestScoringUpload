@@ -65,7 +65,7 @@ namespace JMU.TestScoring
                 return;
             }
 
-            if (allRemoteFiles.Any(f => f.StartsWith(testCode + " ")))
+            if (allRemoteFiles.Any(f => UnixPath.GetFileName(f).StartsWith(testCode + " ")))
             {
                 logger.AppendLine("WARNING:  Files with this test code prefix already exist!");
 

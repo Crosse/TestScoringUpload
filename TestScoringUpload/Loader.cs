@@ -68,5 +68,11 @@ namespace JMU.TestScoring
         {
             return new Loader(true);
         }
+
+        public static bool Query(string question)
+        {
+            var result = Xceed.Wpf.Toolkit.MessageBox.Show(question, "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            return (result == MessageBoxResult.Yes ? true : false);
+        }
     }
 }

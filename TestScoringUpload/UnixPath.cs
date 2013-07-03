@@ -22,5 +22,10 @@ namespace JMU.TestScoring
         {
             return String.Join("/", path1, path2, path3);
         }
+
+        public static string GetFileName(string path)
+        {
+            return path.Substring(path.LastIndexOf("/") + 1);
+        }
     }
 }

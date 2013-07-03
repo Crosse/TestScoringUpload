@@ -148,7 +148,6 @@ namespace JMU.TestScoring
                 Completed(this, new ResultCompletionEventArgs { Error = e, WasCancelled = true });
                 return;
             }
-
         }
 
         #endregion

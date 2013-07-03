@@ -115,7 +115,7 @@ namespace JMU.TestScoring
 
         private void WriteLogFile(string remotePath, ActionExecutionContext context)
         {
-            string logFile = String.Format("{0}_{1}.log", testCode, DateTime.Now.ToIsoDateTimeString(useSeparators:true));
+            string logFile = String.Format("{0}_{1}_{2}.log", DateTime.Now.ToIsoDateTimeString(useSeparators:true), testCode, username);
             logFile = logFile.SanitizeFileName("_");
             string logFilePath = UnixPath.Combine(remotePath, logFile);
             logFilePath = logFilePath.SanitizePath("_");

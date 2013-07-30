@@ -132,7 +132,7 @@ namespace JMU.TestScoring
             foreach (var file in files)
             {
                 FileInfo f = new FileInfo(file);
-                string remoteFilePath = UnixPath.Combine(remoteDirectory, f.Name.Replace(config.FilePrefix, testCode));
+                string remoteFilePath = UnixPath.Combine(remoteDirectory, Regex.Replace(f.Name, "^" + config.FilePrefix, testCode, RegexOptions.IgnoreCase));
 
                 if (!helper.UploadFile(file, remoteFilePath))
                     return;

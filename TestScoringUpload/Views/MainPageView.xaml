@@ -51,7 +51,7 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Faculty's e-ID:" />
             <TextBox Grid.Row="0" Grid.Column="1" Margin="3,3,40,3" Name="FacultyUsername" TabIndex="1" />
 
-            <Label Grid.Row="0" Grid.Column="2" Content="Test Code:" />
+            <Label Grid.Row="0" Grid.Column="2" Content="File Name:" />
             <TextBox Grid.Row="0" Grid.Column="3" Margin="3" Name="TestCode" TabIndex="2" />
         </Grid>
         <TextBox Grid.Row="1" Name="Messages" Margin="25,0,25,15" IsReadOnly="True" VerticalAlignment="Stretch"

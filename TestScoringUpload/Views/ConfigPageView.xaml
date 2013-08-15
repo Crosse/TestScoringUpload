@@ -13,14 +13,15 @@
              MinWidth="500" 
              MinHeight="300">
     <UserControl.Resources>
-        <Style TargetType="{x:Type TextBox}">
+        <Style TargetType="{x:Type Control}" x:Key="ErrorTemplate">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Margin" Value="0 2 40 2" />
             <Setter Property="Validation.ErrorTemplate">
                 <Setter.Value>
                     <ControlTemplate>
                         <DockPanel LastChildFill="True">
-                            <Border Background="Red" DockPanel.Dock="Right" Margin="5 0 0 0" Width="20" Height="20" CornerRadius="10" ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                            <Border Background="Red" DockPanel.Dock="Right" Margin="5 0 0 0" Width="20" Height="20" CornerRadius="10" 
+                                    ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
                                 <TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" />
                             </Border>
                             <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center">
@@ -57,25 +58,25 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Content="File Prefix:" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Name="FilePrefix" TabIndex="0" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Name="FilePrefix" TabIndex="0" Style="{StaticResource ErrorTemplate}" />
 
                     <Label Grid.Row="1" Grid.Column="0" Content="Reports Source Path:" />
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Name="DefaultSourcePath" TabIndex="1" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Name="DefaultSourcePath" TabIndex="1" Style="{StaticResource ErrorTemplate}" />
 
                     <Label Grid.Row="2" Grid.Column="0" Content="Web Server Name:" />
-                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Name="RemoteServer" TabIndex="2" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Name="RemoteServer" TabIndex="2" Style="{StaticResource ErrorTemplate}" />
 
                     <Label Grid.Row="3" Grid.Column="0" Content="Server Base Directory:" />
-                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Name="RemoteServerBaseDirectory" TabIndex="3" />
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Name="RemoteServerBaseDirectory" TabIndex="3" Style="{StaticResource ErrorTemplate}" />
 
                     <Label Grid.Row="4" Grid.Column="0" Content="Student Reports Subdirectory:" />
-                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Name="StudentReportsSubdirectory" TabIndex="4" />
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Name="StudentReportsSubdirectory" TabIndex="4" Style="{StaticResource ErrorTemplate}" />
 
                     <Label Grid.Row="5" Grid.Column="0" Content="Server SSH Username:" />
-                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Name="RemoteServerUser" TabIndex="5" />
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Name="RemoteServerUser" TabIndex="5" Style="{StaticResource ErrorTemplate}" />
 
                     <Label Grid.Row="6" Grid.Column="0" Content="Server SSH Password:" />
-                    <PasswordBox Grid.Row="6" Grid.Column="1" Margin="3" Name="RemoteServerPassword" TabIndex="6"
+                    <PasswordBox Grid.Row="6" Grid.Column="1" Margin="3" Name="RemoteServerPassword" TabIndex="6" Style="{StaticResource ErrorTemplate}"
                                  t:PasswordHelper.Attach="True" 
                                  t:PasswordHelper.Password="{Binding Path=RemoteServerPassword, Mode=TwoWay}"/>
                 </Grid>

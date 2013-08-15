@@ -140,6 +140,14 @@ namespace JMU.TestScoring
                             valid = false;
                         }
                         break;
+                    case "TestCode":
+                        if (TestCode.Contains(" "))
+                        {
+                            message = "File Name (Test Code) must not contain spaces.";
+                            logger.AppendLine(message);
+                            valid = false;
+                        }
+                        break;
                     default:
                         break;
                 }

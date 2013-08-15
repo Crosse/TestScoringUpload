@@ -74,5 +74,10 @@ namespace JMU.TestScoring
             var result = Xceed.Wpf.Toolkit.MessageBox.Show(question, "", MessageBoxButton.YesNo, MessageBoxImage.Question);
             return (result == MessageBoxResult.Yes ? true : false);
         }
+
+        public static void Notify(string text)
+        {
+            var result = Xceed.Wpf.Toolkit.MessageBox.Show(text, "", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

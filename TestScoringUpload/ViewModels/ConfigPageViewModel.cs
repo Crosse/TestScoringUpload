@@ -124,6 +124,7 @@ namespace JMU.TestScoring
         public ConfigPageViewModel()
         {
             GetSettings();
+            Validate();
         }
 
         protected override void OnViewLoaded(object view)
@@ -204,58 +205,84 @@ namespace JMU.TestScoring
         {
             get
             {
-                bool valid = true;
-                string message = null;
+                return ValidateProperty(columnName);
+            }
+        }
+        #endregion
 
-                switch (columnName)
-                {
-                    case "DefaultSourcePath":
-                        if (System.IO.Directory.Exists(DefaultSourcePath) == false)
+        private string ValidateProperty(string propertyName)
+        {
+            bool valid = true;
+            string message = null;
+
+            switch (propertyName)
+            {
+                case "DefaultSourcePath":
+                    if (System.IO.Directory.Exists(DefaultSourcePath) == false)
+                    {
+                        message = String.Format("Path \"{0}\" does not exist or is invalid.", DefaultSourcePath);
+                        valid = false;
+                    }
+                    break;
+                case "FilePrefix":
+                    if (String.IsNullOrEmpty(FilePrefix))
+                        message = "A blank File Prefix is not allowed.";
+                    else if (FilePrefix.EndsWith(" "))
+                        message = "File Prefix cannot end with a space.";
+                    else if (FilePrefix.StartsWith(" "))
+                        message = "File Prefix cannot start with a space.";
+
+                    if (!String.IsNullOrEmpty(message))
+                        valid = false;
+                    break;
+                case "RemoteServerPassword":
+                    if (RemoteServerPassword == null || RemoteServerPassword.Length == 0)
+                    {
+                        message = "Password cannot be blank.";
+                        valid = false;
+                    }
+                    break;
+                case "StudentReportsSubdirectory":
+                    try
+                    {
+                        string fullstudentpath = System.IO.Path.Combine(DefaultSourcePath, StudentReportsSubdirectory);
+                        if (System.IO.Directory.Exists(fullstudentpath) == false)
                         {
-                            message = String.Format("Path \"{0}\" does not exist or is invalid.", DefaultSourcePath);
-                            //logger.AppendLine(message);
+                            message = string.Format("Student Report Path ({0}) does not exist or is invalid.", fullstudentpath);
                             valid = false;
-                            break;
                         }
-                        break;
-                    case "StudentReportsSubdirectory":
-                        try
-                        {
-                            string fullstudentpath = System.IO.Path.Combine(DefaultSourcePath, StudentReportsSubdirectory);
-                            if (System.IO.Directory.Exists(fullstudentpath) == false)
-                            {
-                                message = string.Format("Student Report Path ({0}) does not exist or is invalid.", fullstudentpath);
-                                //logger.AppendLine(message);
-                                valid = false;
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            message = e.Message;
-                            //logger.AppendLine(e.Message);
-                            valid = false;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                if (!valid)
-                    isValid = valid;
-
-                return message;
+                    }
+                    catch (Exception e)
+                    {
+                        message = e.Message;
+                        valid = false;
+                    }
+                    break;
+                default:
+                    break;
             }
 
-        }
+            if (!valid)
+                isValid = valid;
 
-        #endregion
+            return message;
+        }
 
         private bool Validate()
         {
             isValid = true;
 
             NotifyOfPropertyChange(() => DefaultSourcePath);
+            ValidateProperty("DefaultSourcePath");
+
+            NotifyOfPropertyChange(() => FilePrefix);
+            ValidateProperty("FilePrefix");
+
+            NotifyOfPropertyChange(() => RemoteServerPassword);
+            ValidateProperty("RemoteServerPassword");
+
             NotifyOfPropertyChange(() => StudentReportsSubdirectory);
+            ValidateProperty("StudentReportsSubdirectory");
 
             return isValid;
         }

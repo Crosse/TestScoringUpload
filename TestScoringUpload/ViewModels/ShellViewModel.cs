@@ -22,6 +22,13 @@ namespace JMU.TestScoring
         protected override void OnActivate()
         {
             ShowMainPage();
+
+            if (ConfigModel.Instance.RemoteServerPassword.Length == 0)
+            {
+                ShowConfigPage();
+                Loader.Notify("Some settings could not be loaded from the configuration file.\nPlease verify your configuration settings.");
+            }
+
             base.OnActivate();
         }
 

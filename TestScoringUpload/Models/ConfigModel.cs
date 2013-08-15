@@ -10,6 +10,8 @@ namespace JMU.TestScoring
 {
     public class ConfigModel : PropertyChangedBase
     {
+        Logger logger = Logger.GetLogger();
+
         static readonly byte[] salt = System.Text.Encoding.Unicode.GetBytes("Salt is Healthy");
 
         private string defaultSourcePath;
@@ -124,19 +126,37 @@ namespace JMU.TestScoring
                     if (String.IsNullOrEmpty(encrypted))
                         return null;
 
-                    byte[] decrypted = ProtectedData.Unprotect(
-                        Convert.FromBase64String(encrypted),
-                        salt,
-                        DataProtectionScope.CurrentUser);
-
-                    char[] d = Encoding.Unicode.GetChars(decrypted);
-                    decrypted.Apply(b => b = 0);
-
-                    for (int i = 0; i < d.Length; i++)
+                    byte[] decrypted = null;
+                    try
                     {
-                        remoteServerPassword.AppendChar(d[i]);
-                        d[i] = '\0';
+                        decrypted = ProtectedData.Unprotect(
+                            Convert.FromBase64String(encrypted),
+                            salt,
+                            DataProtectionScope.CurrentUser);
+
+                        char[] d = Encoding.Unicode.GetChars(decrypted);
+
+                        for (int i = 0; i < d.Length; i++)
+                        {
+                            remoteServerPassword.AppendChar(d[i]);
+                            d[i] = '\0';
+                        }
                     }
+                    catch (Exception e)
+                    {
+                        string msg = e.Message;
+                        if (msg.EndsWith("\r\n"))
+                            msg = msg.Substring(0, msg.Length - 2);
+
+                        logger.AppendError("Could not decrypt stored password.  The exception was: \"{0}\".", msg);
+                        SetAppSetting("RemoteServerPassword", "");
+                    }
+                    finally
+                    {
+                        if (decrypted != null)
+                            decrypted.Apply(b => b = 0);
+                    }
+
                     remoteServerPassword.MakeReadOnly();
                 }
                 return remoteServerPassword;

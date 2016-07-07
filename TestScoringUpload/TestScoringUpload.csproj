@@ -130,7 +130,7 @@
     <Compile Include="PasswordHelper.cs" />
     <Compile Include="SftpConnector.cs" />
     <Compile Include="SftpDisconnector.cs" />
-    <Compile Include="SshHelper.cs" />
+    <Compile Include="SftpHelper.cs" />
     <Compile Include="UnixPath.cs" />
     <Compile Include="Validator.cs" />
     <Compile Include="Views\ConfigPageView.xaml.cs">

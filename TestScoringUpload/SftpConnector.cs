@@ -32,7 +32,7 @@ namespace JMU.TestScoring
             try
             {
                 //await Task.Run(() => System.Threading.Thread.Sleep(2000));
-                ITransferHelper helper = new SshHelper();
+                ITransferHelper helper = new SftpHelper();
                 helper.Connect(server, username, password);
             }
             catch (Exception e)

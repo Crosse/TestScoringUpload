@@ -14,7 +14,7 @@ namespace JMU.TestScoring
 
         public void Execute(ActionExecutionContext context)
         {
-            ITransferHelper helper = new SshHelper();
+            ITransferHelper helper = new SftpHelper();
             helper.Disconnect();
 
             Completed(this, new ResultCompletionEventArgs());

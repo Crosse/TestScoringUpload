@@ -26,7 +26,7 @@ namespace JMU.TestScoring
             this.username = username;
             this.testCode = testCode;
 
-            this.helper = new SshHelper();
+            this.helper = new SftpHelper();
             this.helper = new FtpHelper();
         }
 

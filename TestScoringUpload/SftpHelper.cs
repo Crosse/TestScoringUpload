@@ -13,7 +13,7 @@ using Renci.SshNet.Sftp;
 
 namespace JMU.TestScoring
 {
-    public class SshHelper : ITransferHelper
+    public class SftpHelper : ITransferHelper
     {
         private static Logger logger = Logger.GetLogger();
         static SftpClient client;

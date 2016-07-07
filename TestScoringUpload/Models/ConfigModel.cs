@@ -21,6 +21,7 @@ namespace JMU.TestScoring
         private SecureString remoteServerPassword;
         private string remoteServerBaseDirectory;
         private string studentReportsSubdirectory;
+        private string transferProtocol;
 
         private Configuration config;
         private AppSettingsSection appSettings;
@@ -207,6 +208,29 @@ namespace JMU.TestScoring
             }
         }
 
+        public string TransferProtocol
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(transferProtocol))
+                    TransferProtocol = GetAppSetting("TransferProtocol");
+
+                return transferProtocol;
+            }
+            set
+            {
+                if (value != "FTP" && value != "SFTP")
+                {
+                    logger.AppendError("TransferProtocol value \"{0}\" is invalid. Parameter must be one of either \"FTP\" or \"SFTP\".", value);
+                    transferProtocol = SetAppSetting("TransferProtocol", "SFTP");
+                }
+                else
+                    transferProtocol = SetAppSetting("TransferProtocol", value);
+
+                NotifyOfPropertyChange(() => TransferProtocol);
+            }
+        }
+
         public bool IsValid()
         {
             return (!String.IsNullOrEmpty(DefaultSourcePath) &&
@@ -215,7 +239,8 @@ namespace JMU.TestScoring
                     !String.IsNullOrEmpty(RemoteServerUser) &&
                     RemoteServerPassword != null &&
                     !String.IsNullOrEmpty(RemoteServerBaseDirectory) &&
-                    !String.IsNullOrEmpty(StudentReportsSubdirectory));
+                    !String.IsNullOrEmpty(StudentReportsSubdirectory) &&
+                    !String.IsNullOrEmpty(TransferProtocol));
         }
     }
 }

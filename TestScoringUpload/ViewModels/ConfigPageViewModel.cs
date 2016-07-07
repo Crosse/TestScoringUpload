@@ -21,6 +21,7 @@ namespace JMU.TestScoring
         private string remoteServerPassword;
         private string remoteServerBaseDirectory;
         private string studentReportsSubdirectory;
+        private string transferProtocol;
 
         private ConfigModel config = ConfigModel.Instance;
 
@@ -119,6 +120,28 @@ namespace JMU.TestScoring
                 NotifyOfPropertyChange(() => CanSaveAndClose);
             }
         }
+        public string TransferProtocol
+        {
+            get { return transferProtocol; }
+            set
+            {
+                transferProtocol = value;
+                formChanged = true;
+                NotifyOfPropertyChange(() => TransferProtocol_SFTP);
+                NotifyOfPropertyChange(() => TransferProtocol_FTP);
+                NotifyOfPropertyChange(() => CanSaveAndClose);
+            }
+        }
+        public bool TransferProtocol_FTP
+        {
+            get { return TransferProtocol == "FTP"; }
+            set { TransferProtocol = "FTP"; }
+        }
+        public bool TransferProtocol_SFTP
+        {
+            get { return TransferProtocol == "SFTP"; }
+            set { TransferProtocol = "SFTP"; }
+        }
         #endregion Properties
 
         public ConfigPageViewModel()
@@ -179,6 +202,7 @@ namespace JMU.TestScoring
             RemoteServerPassword = config.RemoteServerPassword.ConvertToUnsecureString();
             RemoteServerBaseDirectory = config.RemoteServerBaseDirectory;
             StudentReportsSubdirectory = config.StudentReportsSubdirectory;
+            TransferProtocol = config.TransferProtocol;
             formChanged = false;
         }
 
@@ -191,6 +215,7 @@ namespace JMU.TestScoring
             config.RemoteServerPassword = remoteServerPassword.ConvertToSecureString();
             config.RemoteServerBaseDirectory = remoteServerBaseDirectory;
             config.StudentReportsSubdirectory = studentReportsSubdirectory;
+            config.TransferProtocol = transferProtocol;
             formChanged = false;
         }
 

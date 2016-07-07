@@ -26,8 +26,10 @@ namespace JMU.TestScoring
             this.username = username;
             this.testCode = testCode;
 
-            this.helper = new SftpHelper();
-            this.helper = new FtpHelper();
+            if (config.TransferProtocol == "FTP")
+                helper = new FtpHelper();
+            else if (config.TransferProtocol == "SFTP")
+                helper = new SftpHelper();
         }
 
         #region IResult Members

@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using Crosse.ExtensionMethods;
 using Renci.SshNet;
 using Renci.SshNet.Common;

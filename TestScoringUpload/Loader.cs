@@ -25,7 +25,7 @@ namespace JMU.TestScoring
 
         public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
 
-        public void Execute(ActionExecutionContext context)
+        public void Execute(CoroutineExecutionContext context)
         {
             var view = context.View as FrameworkElement;
             while (view != null)

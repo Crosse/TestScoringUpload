@@ -34,7 +34,7 @@ namespace JMU.TestScoring
 
         public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
 
-        public async void Execute(ActionExecutionContext context)
+        public async void Execute(CoroutineExecutionContext context)
         {
             bool valid = await ValidateFacultyUsername();
             if (!valid)

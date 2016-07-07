@@ -33,7 +33,7 @@ namespace JMU.TestScoring
 
         public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
 
-        public void Execute(ActionExecutionContext context)
+        public void Execute(CoroutineExecutionContext context)
         {
             ResultCompletionEventArgs args = new ResultCompletionEventArgs();
 
@@ -126,7 +126,7 @@ namespace JMU.TestScoring
             Completed(this, args);
         }
 
-        private void UploadFiles(string[] files, string remoteDirectory, ActionExecutionContext context)
+        private void UploadFiles(string[] files, string remoteDirectory, CoroutineExecutionContext context)
         {
             foreach (var file in files)
             {
@@ -138,7 +138,7 @@ namespace JMU.TestScoring
             }
         }
 
-        private void WriteLogFile(string remotePath, ActionExecutionContext context)
+        private void WriteLogFile(string remotePath, CoroutineExecutionContext context)
         {
             string logFile = String.Format("{0}_{1}_{2}.log", DateTime.Now.ToIsoDateTimeString(useSeparators:true), testCode, username);
             logFile = logFile.SanitizeFileName("_");

@@ -4,12 +4,24 @@ using Caliburn.Micro;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.Windows;
 
 namespace JMU.TestScoring
 {
-    class AppBootstrapper : Bootstrapper<ShellViewModel>
+    class AppBootstrapper : BootstrapperBase
     {
         private CompositionContainer container;
+
+        public AppBootstrapper()
+        {
+            Initialize();
+        }
+
+        protected override void OnStartup(object sender, StartupEventArgs e)
+        {
+            base.OnStartup(sender, e);
+            DisplayRootViewFor<ShellViewModel>();
+        }
 
         protected override void Configure()
         {

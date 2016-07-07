@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security;
+using Caliburn.Micro;
 using Crosse.ExtensionMethods;
 using Renci.SshNet;
 using Renci.SshNet.Common;
@@ -153,6 +154,16 @@ namespace JMU.TestScoring
             }
 
             return files.Select(f => f.FullName).ToArray();
+        }
+
+        public IResult GetConnector(string server, string username, SecureString password)
+        {
+            return new SftpConnector(server, username, password);
+        }
+
+        public IResult GetDisconnector()
+        {
+            return new SftpDisconnector();
         }
     }
 }

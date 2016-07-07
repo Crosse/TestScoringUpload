@@ -3,19 +3,11 @@ using Caliburn.Micro;
 
 namespace JMU.TestScoring
 {
-    public class FtpDisconnector : IResult
+    public class FtpDisconnector : DisconnectorBase
     {
-        #region IResult Members
-        public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
-
-        public void Execute(ActionExecutionContext context)
+        public FtpDisconnector() : base()
         {
-            ITransferHelper helper = new FtpHelper();
-            helper.Disconnect();
-
-            Completed(this, new ResultCompletionEventArgs());
+            this.SetHelper(new FtpHelper());
         }
-
-        #endregion
     }
 }

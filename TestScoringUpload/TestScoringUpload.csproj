@@ -131,6 +131,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="TransferHelpers\ConnectorBase.cs" />
+    <Compile Include="TransferHelpers\DisconnectorBase.cs" />
     <Compile Include="TransferHelpers\ftp\FtpDisconnector.cs" />
     <Compile Include="TransferHelpers\ftp\FtpConnector.cs" />
     <Compile Include="TransferHelpers\ftp\FtpHelper.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="TransferHelpers\sftp\SftpConnector.cs" />
     <Compile Include="TransferHelpers\sftp\SftpDisconnector.cs" />
     <Compile Include="TransferHelpers\sftp\SftpHelper.cs" />
+    <Compile Include="TransferHelpers\TransferHelperFactory.cs" />
     <Compile Include="UnixPath.cs" />
     <Compile Include="Validator.cs" />
     <Compile Include="Views\ConfigPageView.xaml.cs">

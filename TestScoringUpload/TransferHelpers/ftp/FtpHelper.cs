@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.FtpClient;
+using Caliburn.Micro;
+using System.Security;
 
 namespace JMU.TestScoring
 {
@@ -13,7 +15,6 @@ namespace JMU.TestScoring
         static ConfigModel config = ConfigModel.Instance;
 
         #region ITransferHelper Members
-
         public bool Connect(string server, string username, System.Security.SecureString password)
         {
             if (client != null && client.IsConnected)
@@ -186,6 +187,16 @@ namespace JMU.TestScoring
             }
 
             return items.Select(f => f.FullName).ToArray();
+        }
+
+        public IResult GetConnector(string server, string username, SecureString password)
+        {
+            return new FtpConnector(server, username, password);
+        }
+
+        public IResult GetDisconnector()
+        {
+            return new FtpDisconnector();
         }
 
         #endregion

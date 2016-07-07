@@ -1,9 +1,13 @@
-﻿using System.Security;
+﻿using Caliburn.Micro;
+using System.Security;
 
 namespace JMU.TestScoring
 {
     public interface ITransferHelper
     {
+        IResult GetConnector(string server, string username, SecureString password);
+        IResult GetDisconnector();
+
         bool Connect(string server, string username, SecureString password);
         void Disconnect();
 

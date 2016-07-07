@@ -23,10 +23,6 @@ namespace JMU.TestScoring
             this.username = username;
             this.testCode = testCode;
 
-            if (config.TransferProtocol == "FTP")
-                helper = new FtpHelper();
-            else if (config.TransferProtocol == "SFTP")
-                helper = new SftpHelper();
         }
 
         #region IResult Members
@@ -35,6 +31,7 @@ namespace JMU.TestScoring
 
         public void Execute(CoroutineExecutionContext context)
         {
+            helper = TransferHelperFactory.GetHelper(config.TransferProtocol);
             ResultCompletionEventArgs args = new ResultCompletionEventArgs();
 
             string remoteDir = UnixPath.Combine(config.RemoteServerBaseDirectory, username);

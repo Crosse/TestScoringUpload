@@ -118,9 +118,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="FtpDisconnector.cs" />
-    <Compile Include="FtpConnector.cs" />
-    <Compile Include="FtpHelper.cs" />
+    <Compile Include="TransferHelpers\ftp\FtpDisconnector.cs" />
+    <Compile Include="TransferHelpers\ftp\FtpConnector.cs" />
+    <Compile Include="TransferHelpers\ftp\FtpHelper.cs" />
     <Compile Include="ITransferHelper.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Logger.cs" />
@@ -128,9 +128,9 @@
     <Compile Include="ReportUploader.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="PasswordHelper.cs" />
-    <Compile Include="SftpConnector.cs" />
-    <Compile Include="SftpDisconnector.cs" />
-    <Compile Include="SftpHelper.cs" />
+    <Compile Include="TransferHelpers\sftp\SftpConnector.cs" />
+    <Compile Include="TransferHelpers\sftp\SftpDisconnector.cs" />
+    <Compile Include="TransferHelpers\sftp\SftpHelper.cs" />
     <Compile Include="UnixPath.cs" />
     <Compile Include="Validator.cs" />
     <Compile Include="Views\ConfigPageView.xaml.cs">

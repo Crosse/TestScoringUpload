@@ -73,10 +73,10 @@
                     <Label Grid.Row="4" Grid.Column="0" Content="Student Reports Subdirectory:" />
                     <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Name="StudentReportsSubdirectory" TabIndex="4" Style="{StaticResource ErrorTemplate}" />
 
-                    <Label Grid.Row="5" Grid.Column="0" Content="Server SSH Username:" />
+                    <Label Grid.Row="5" Grid.Column="0" Content="Server Username:" />
                     <TextBox Grid.Row="5" Grid.Column="1" Margin="3" Name="RemoteServerUser" TabIndex="5" Style="{StaticResource ErrorTemplate}" />
 
-                    <Label Grid.Row="6" Grid.Column="0" Content="Server SSH Password:" />
+                    <Label Grid.Row="6" Grid.Column="0" Content="Server Password:" />
                     <PasswordBox Grid.Row="6" Grid.Column="1" Margin="3" Name="RemoteServerPassword" TabIndex="6" Style="{StaticResource ErrorTemplate}"
                                  t:PasswordHelper.Attach="True" 
                                  t:PasswordHelper.Password="{Binding Path=RemoteServerPassword, Mode=TwoWay}"/>

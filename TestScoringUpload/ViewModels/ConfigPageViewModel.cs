@@ -36,7 +36,6 @@ namespace JMU.TestScoring
                 NotifyOfPropertyChange(() => IsValidating);
             }
         }
-
         public string DefaultSourcePath
         {
             get { return defaultSourcePath; }
@@ -49,7 +48,6 @@ namespace JMU.TestScoring
                 NotifyOfPropertyChange(() => CanSaveAndClose);
             }
         }
-
         public string FilePrefix
         {
             get { return filePrefix; }
@@ -61,7 +59,6 @@ namespace JMU.TestScoring
                 NotifyOfPropertyChange(() => CanSaveAndClose);
             }
         }
-
         public string RemoteServer
         {
             get { return remoteServer; }
@@ -73,7 +70,6 @@ namespace JMU.TestScoring
                 NotifyOfPropertyChange(() => CanSaveAndClose);
             }
         }
-
         public string RemoteServerUser
         {
             get { return remoteServerUser; }
@@ -85,7 +81,6 @@ namespace JMU.TestScoring
                 NotifyOfPropertyChange(() => CanSaveAndClose);
             }
         }
-
         public string RemoteServerPassword
         {
             get { return remoteServerPassword; }
@@ -97,7 +92,6 @@ namespace JMU.TestScoring
                 NotifyOfPropertyChange(() => CanSaveAndClose);
             }
         }
-
         public string RemoteServerBaseDirectory
         {
             get { return remoteServerBaseDirectory; }

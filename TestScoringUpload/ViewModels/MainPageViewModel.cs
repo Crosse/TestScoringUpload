@@ -11,29 +11,29 @@ namespace JMU.TestScoring
     class MainPageViewModel : Screen, IDataErrorInfo
     {
         private Logger logger = Logger.GetLogger();
-        private string _facultyusername;
-        private string _testcode;
-        private bool _isvalidating;
-        private bool _isvalid;
+        private string facultyUsername;
+        private string testCode;
+        private bool isValidating;
+        private bool isValid;
         private ConfigModel config = ConfigModel.Instance;
 
         #region Properties
         public bool IsValidating
         {
-            get { return _isvalidating; }
+            get { return isValidating; }
             set
             {
-                _isvalidating = value;
+                isValidating = value;
                 NotifyOfPropertyChange(() => IsValidating);
             }
         }
 
         public string FacultyUsername
         {
-            get { return _facultyusername; }
+            get { return facultyUsername; }
             set
             {
-                _facultyusername = value;
+                facultyUsername = value;
                 NotifyOfPropertyChange(() => FacultyUsername);
                 NotifyOfPropertyChange(() => CanTransfer);
             }
@@ -41,26 +41,26 @@ namespace JMU.TestScoring
 
         public string TestCode
         {
-            get { return _testcode; }
+            get { return testCode; }
             set
             {
-                _testcode = value;
+                testCode = value;
                 NotifyOfPropertyChange(() => TestCode);
                 NotifyOfPropertyChange(() => CanTransfer);
             }
         }
-        #endregion Properties
 
         public bool CanTransfer
         {
             get
             {
                 return (
-                    !String.IsNullOrEmpty(_facultyusername) &&
-                    !String.IsNullOrEmpty(_testcode) &&
+                    !String.IsNullOrEmpty(facultyUsername) &&
+                    !String.IsNullOrEmpty(testCode) &&
                     config.IsValid());
             }
         }
+        #endregion Properties
 
         public IEnumerable<IResult> Transfer()
         {
@@ -89,14 +89,14 @@ namespace JMU.TestScoring
 
         public bool Validate()
         {
-            _isvalid = true;
+            isValid = true;
 
             IsValidating = true;
             NotifyOfPropertyChange(() => FacultyUsername);
             NotifyOfPropertyChange(() => TestCode);
             IsValidating = false;
 
-            return _isvalid;
+            return isValid;
         }
 
         public bool ValidateFacultyUsername()
@@ -104,7 +104,7 @@ namespace JMU.TestScoring
             PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
             try
             {
-                UserPrincipal princ = UserPrincipal.FindByIdentity(ctx, _facultyusername);
+                UserPrincipal princ = UserPrincipal.FindByIdentity(ctx, facultyUsername);
                 return !(princ == null);
             }
             catch (Exception)
@@ -114,7 +114,6 @@ namespace JMU.TestScoring
         }
 
         #region IDataErrorInfo Members
-
         public string Error
         {
             get { return null; }
@@ -153,12 +152,11 @@ namespace JMU.TestScoring
                 }
 
                 if (!valid)
-                    _isvalid = valid;
+                    isValid = valid;
 
                 return message;
             }
         }
-
         #endregion
     }
 }

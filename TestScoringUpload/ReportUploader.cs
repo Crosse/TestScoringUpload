@@ -125,8 +125,6 @@ namespace JMU.TestScoring
                         logger.AppendError("Unable to delete \"{0}\": {1}", Path.GetFileName(file), e.Message);
                     }
                 }
-                Directory.Delete(studentReportPath);
-                logger.AppendLine("Deleted {0}", studentReportPath);
             }
 
             Completed(this, args);

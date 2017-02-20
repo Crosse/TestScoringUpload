@@ -95,12 +95,19 @@ namespace JMU.TestScoring
 
             UploadFiles(files, remoteDir, context);
             UploadFiles(studentFiles, remoteStudentDir, context);
+            logger.AppendLine("Upload was successful.");
 
             //TODO: Don't hardcode the Logs path.
-            string logDir = UnixPath.Combine(config.RemoteServerBaseDirectory, "UploadLogs");
-            WriteLogFile(logDir, context);
+            string logDir = UnixPath.Combine(remoteDir, "UploadLogs");
+            if (helper.CreateDirectory(logDir) == true)
+            {
+                WriteLogFile(logDir, context);
+            }
+            else
+            {
+                logger.AppendError("Unable to write log file to \"{0}\"!", logDir);
+            }
 
-            logger.AppendLine("Upload was successful.");
 
             bool delete = Loader.Query("Delete source files?");
             if (delete)

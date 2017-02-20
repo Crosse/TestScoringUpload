@@ -129,7 +129,11 @@ namespace JMU.TestScoring
             bool result = false;
             try
             {
-                client.CreateDirectory(path);
+                if (!client.Exists(path))
+                {
+                    client.CreateDirectory(path);
+                }
+
                 result = true;
             }
             catch (Exception e)

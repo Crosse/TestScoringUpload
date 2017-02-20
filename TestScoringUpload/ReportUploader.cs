@@ -83,7 +83,7 @@ namespace JMU.TestScoring
             if (allRemoteFiles.Any(d => d == remoteStudentDir) == false)
             {
                 logger.AppendLine(string.Format("Student subdirectory \"{0}\" doesn't exist.  Creating it...", config.StudentReportsSubdirectory));
-                
+
                 if (helper.CreateDirectory(remoteStudentDir) == false)
                 {
                     Loader.Hide().Execute(context);
@@ -164,6 +164,7 @@ namespace JMU.TestScoring
                     logFile = test;
                     break;
                 }
+                i++;
             }
 
             logger.AppendLine(String.Format("Writing log file: {0}", logFilePath));

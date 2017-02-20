@@ -8,7 +8,7 @@ using Caliburn.Micro;
 namespace JMU.TestScoring
 {
     [Export(typeof(MainPageViewModel))]
-    class MainPageViewModel : Screen, IDataErrorInfo
+    public class MainPageViewModel : Screen, IDataErrorInfo
     {
         private Logger logger = Logger.GetLogger();
         private string facultyUsername;

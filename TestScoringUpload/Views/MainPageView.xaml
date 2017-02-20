@@ -4,11 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:local="clr-namespace:JMU.TestScoring"
+             xmlns:t="clr-namespace:JMU.TestScoring"
              mc:Ignorable="d"
-             IsTabStop="False">
+             IsTabStop="False"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             MinWidth="500"
+             MinHeight="300">
     <UserControl.Resources>
-        <x:StaticExtension x:Key="logger" Member="local:Logger.Instance" />
+        <x:StaticExtension x:Key="logger" Member="t:Logger.Instance" />
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Margin" Value="0 2 40 2" />

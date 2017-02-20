@@ -5,6 +5,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Windows;
+using System.Collections.Generic;
 
 namespace JMU.TestScoring
 {
@@ -20,7 +21,15 @@ namespace JMU.TestScoring
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             base.OnStartup(sender, e);
-            DisplayRootViewFor<ShellViewModel>();
+
+            var settings = new Dictionary<string, object>
+            {
+                { "SizeToContent", SizeToContent.WidthAndHeight },
+                { "MinWidth", 500 },
+                { "MinHeight", 300 },
+            };
+
+            DisplayRootViewFor<ShellViewModel>(settings);
         }
 
         protected override void Configure()

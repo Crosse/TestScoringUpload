@@ -5,11 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="500"
+             d:DesignHeight="300"
+             d:DesignWidth="500"
+             MinWidth="600"
+             MinHeight="400"
              >
-    
+
     <xctk:BusyIndicator>
-        <DockPanel>
+        <DockPanel LastChildFill="True">
             <Menu IsMainMenu="True" DockPanel.Dock="Top" Focusable="False">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Configuration" Name="ShowConfigPage">

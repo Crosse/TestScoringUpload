@@ -29,39 +29,41 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid x:Name="g" MinWidth="500" MinHeight="300" Background="LightGray">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="0" Margin="25 25 25 10" FocusManager.FocusedElement="{Binding ElementName=FacultyUsername}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+    <Grid Background="LightGray">
+        <DockPanel LastChildFill="True" Margin="3">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="Transfer" Content="Transfer" Margin="3" Padding="10 3" IsDefault="True" />
+            </StackPanel>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Faculty's e-ID:" />
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="3,3,40,3" Name="FacultyUsername" TabIndex="1" />
+            <DockPanel DockPanel.Dock="Top" LastChildFill="True" FocusManager.FocusedElement="{Binding ElementName=FacultyUsername}">
+                <Grid Margin="25 25 25 10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="2" Content="File Name:" />
-            <TextBox Grid.Row="0" Grid.Column="3" Margin="3" Name="TestCode" TabIndex="2" />
-        </Grid>
-        <TextBox Grid.Row="1" Name="Messages" Margin="25,0,25,15" IsReadOnly="True" VerticalAlignment="Stretch"
-                 TextChanged="Messages_TextChanged" IsTabStop="False" Focusable="True"
-                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                 MaxWidth="{Binding ElementName=g, Path=ActualWidth}"
-                 MaxHeight="{Binding ElementName=g, Path=ActualHeight}"
-                 Text="{Binding Messages, Mode=OneWay, Source={StaticResource logger}}" />
+                    <Label Grid.Row="0" Grid.Column="0" Content="Faculty's e-ID:" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3,3,40,3" Name="FacultyUsername" TabIndex="1" />
 
-        <Button Grid.Row="3" HorizontalAlignment="Right"
-                Name="Transfer" Content="Transfer" Margin="3" Padding="10 3" IsDefault="True" />
+                    <Label Grid.Row="0" Grid.Column="2" Content="File Name:" />
+                    <TextBox Grid.Row="0" Grid.Column="3" Margin="3" Name="TestCode" TabIndex="2" />
+
+                    <TextBox Grid.Row="1" Grid.RowSpan="6" Grid.ColumnSpan="4"
+                             Name="Messages" Margin="3 25 3 10" IsReadOnly="True" VerticalAlignment="Stretch"
+                             IsTabStop="False" Focusable="True"
+                             TextChanged="Messages_TextChanged"
+                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                             ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                             ScrollViewer.CanContentScroll="True"
+                             Text="{Binding Messages, Mode=OneWay, Source={StaticResource logger}}" />
+                </Grid>
+            </DockPanel>
+        </DockPanel>
     </Grid>
 </UserControl>

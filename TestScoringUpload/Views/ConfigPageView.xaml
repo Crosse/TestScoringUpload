@@ -33,7 +33,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid MinWidth="500" MinHeight="300" Background="LightGray">
+    <Grid Background="LightGray">
         <DockPanel LastChildFill="True" Margin="25">
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="SaveAndClose" Content="Save Settings" Margin="3" Padding="10 3" TabIndex="9" />

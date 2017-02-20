@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace JMU.TestScoring
 {
@@ -10,6 +12,12 @@ namespace JMU.TestScoring
         public ShellView()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ((Window)Parent).SizeToContent = SizeToContent.Manual;
         }
     }
 }

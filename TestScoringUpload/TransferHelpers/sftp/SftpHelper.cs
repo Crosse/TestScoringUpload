@@ -83,25 +83,28 @@ namespace JMU.TestScoring
                 logger.AppendLine("Disconnect:  not connected to {0}", config.RemoteServer);
         }
 
-        public bool UploadFile(string localFilePath, string remoteFilePath)
+        public bool UploadFile(string localPath, string remoteFilePath)
         {
-            FileInfo f = new FileInfo(localFilePath);
+            FileInfo f = new FileInfo(localPath);
 
             if (!f.Exists)
             {
-                logger.AppendLine("ERROR:  local file \"{0}\" does not exist.", localFilePath);
+                logger.AppendLine("ERROR:  local file \"{0}\" does not exist.", localPath);
                 return false;
             }
 
-            logger.AppendLine(String.Format("Upload:  \"{0}\" --> \"{1}\"", localFilePath, remoteFilePath));
+            logger.AppendLine(String.Format("Upload:  \"{0}\" --> \"{1}\"", localPath, remoteFilePath));
 
             try
             {
-                client.UploadFile(new FileStream(f.FullName, FileMode.Open), remoteFilePath, false);
+                using (Stream l = File.OpenRead(localPath))
+                {
+                    client.UploadFile(l, remoteFilePath, true);
+                }
             }
             catch (Exception e)
             {
-                logger.AppendLine(String.Format("WARNING: An error occurred uploading file \"{0}\":  {1}", localFilePath, e.Message));
+                logger.AppendLine(String.Format("WARNING: An error occurred uploading file \"{0}\":  {1}", localPath, e.Message));
                 return false;
             }
 

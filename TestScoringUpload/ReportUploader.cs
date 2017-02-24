@@ -97,18 +97,6 @@ namespace JMU.TestScoring
             UploadFiles(studentFiles, remoteStudentDir, context);
             logger.AppendLine("Upload was successful.");
 
-            //TODO: Don't hardcode the Logs path.
-            string logDir = UnixPath.Combine(remoteDir, "UploadLogs");
-            if (helper.CreateDirectory(logDir) == true)
-            {
-                WriteLogFile(logDir, context);
-            }
-            else
-            {
-                logger.AppendError("Unable to write log file to \"{0}\"!", logDir);
-            }
-
-
             bool delete = Loader.Query("Delete source files?");
             if (delete)
             {
@@ -125,6 +113,17 @@ namespace JMU.TestScoring
                         logger.AppendError("Unable to delete \"{0}\": {1}", Path.GetFileName(file), e.Message);
                     }
                 }
+            }
+
+            //TODO: Don't hardcode the Logs path.
+            string logDir = UnixPath.Combine(remoteDir, "UploadLogs");
+            if (helper.CreateDirectory(logDir) == true)
+            {
+                WriteLogFile(logDir, context);
+            }
+            else
+            {
+                logger.AppendError("Unable to write log file to \"{0}\"!", logDir);
             }
 
             Completed(this, args);
